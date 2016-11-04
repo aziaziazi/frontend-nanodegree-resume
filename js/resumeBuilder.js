@@ -123,3 +123,36 @@ var education = {
     }
   ]
 };
+
+function displayBio() {
+  $("#header").prepend(HTMLbioPic.replace("%data%", bio.biopic));
+  $("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
+  $("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
+
+  // Use of JQuery.each() because "contact" is an object and forEach would be error prone.
+  $.each(bio.contact, function(contactType, contactData){
+    $("#topContacts").append(HTMLcontactGeneric.replace("%data%", contactData)
+      .replace("%contact%", contactType));
+  });
+
+  if (bio.skills.length > 0){
+    $("#header").append(HTMLskillsStart);
+    // use of JQuery.each() to match the above loop. forEach would also work well.
+    $.each(bio.skills, function(i, skill){
+      $("#header").append(HTMLskills.replace("%data%", skill));
+  })};
+}
+
+function displayWork() {
+  // Vanilla forEach works well ! JQuery.each() could also work fine.
+  work.jobs.forEach(function(job){
+    $("#workExperience").append(HTMLworkStart);
+
+    $(".work-entry:last").append(HTMLworkEmployer.replace("%data%", job.employer));
+    // TODO: replace "> a" with an id selector - and refactor helper.js
+    $(".work-entry:last > a").append(HTMLworkTitle.replace("%data%", job.title));
+    $(".work-entry:last").append(HTMLworkDates.replace("%data%", job.dates));
+    $(".work-entry:last").append(HTMLworkLocation.replace("%data%", job.location));
+    $(".work-entry:last").append(HTMLworkDescription.replace("%data%", job.description));
+  });
+}
