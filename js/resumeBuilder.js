@@ -156,3 +156,6 @@ function displayWork() {
     $(".work-entry:last").append(HTMLworkDescription.replace("%data%", job.description));
   });
 }
+
+displayBio();
+displayWork();
