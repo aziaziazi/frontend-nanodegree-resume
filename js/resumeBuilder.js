@@ -157,5 +157,19 @@ function displayWork() {
   });
 }
 
+function displayInButton() {
+  $("#main").prepend(internationalizeButton);
+}
+
+function inName() {
+  var names = bio.name.split(" ");
+  names[0] = names[0].slice(0,1).toUpperCase() + names[0].slice(1).toLowerCase();
+  names[1] = names[1].toUpperCase();
+
+  return names.join(" ");
+}
+
 displayBio();
 displayWork();
+inName();
+displayInButton();
